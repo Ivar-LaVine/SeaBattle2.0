@@ -1,0 +1,13 @@
+D:\3is1\Plotnikov\CourseWork_2\TestApp\bin\Debug\TestApp.exe.config
+D:\3is1\Plotnikov\CourseWork_2\TestApp\bin\Debug\TestApp.exe
+D:\3is1\Plotnikov\CourseWork_2\TestApp\bin\Debug\TestApp.pdb
+D:\3is1\Plotnikov\CourseWork_2\TestApp\bin\Debug\Library.dll
+D:\3is1\Plotnikov\CourseWork_2\TestApp\bin\Debug\Library.pdb
+D:\3is1\Plotnikov\CourseWork_2\TestApp\obj\Debug\TestApp.csprojAssemblyReference.cache
+D:\3is1\Plotnikov\CourseWork_2\TestApp\obj\Debug\TestApp.Properties.Resources.resources
+D:\3is1\Plotnikov\CourseWork_2\TestApp\obj\Debug\TestApp.csproj.GenerateResource.cache
+D:\3is1\Plotnikov\CourseWork_2\TestApp\obj\Debug\TestApp.csproj.CoreCompileInputs.cache
+D:\3is1\Plotnikov\CourseWork_2\TestApp\obj\Debug\TestApp.csproj.CopyComplete
+D:\3is1\Plotnikov\CourseWork_2\TestApp\obj\Debug\TestApp.exe
+D:\3is1\Plotnikov\CourseWork_2\TestApp\obj\Debug\TestApp.pdb
+D:\3is1\Plotnikov\CourseWork_2\TestApp\obj\Debug\TestApp.Form1.resources

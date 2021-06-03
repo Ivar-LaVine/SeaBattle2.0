@@ -1,0 +1,6 @@
+D:\3is1\Plotnikov\CourseWork_2\Library\Library\bin\Debug\Library.dll
+D:\3is1\Plotnikov\CourseWork_2\Library\Library\bin\Debug\Library.pdb
+D:\3is1\Plotnikov\CourseWork_2\Library\Library\obj\Debug\Library.csproj.CoreCompileInputs.cache
+D:\3is1\Plotnikov\CourseWork_2\Library\Library\obj\Debug\Library.dll
+D:\3is1\Plotnikov\CourseWork_2\Library\Library\obj\Debug\Library.pdb
+D:\3is1\Plotnikov\CourseWork_2\Library\Library\obj\Debug\Library.csprojAssemblyReference.cache
