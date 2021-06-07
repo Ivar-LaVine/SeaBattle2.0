@@ -41,8 +41,64 @@ namespace Library
             if (c < 0 || c > 9) Column = -1;
             if (r >= 0)
                 if ((c >= 0) && CanPut(r, c)) Column = c;
-                else Column = -1; 
+                else Column = -1;
             else Column = c;
+        }
+        public void SetCoordinatesAI(int r, int c)
+        {
+            // Row
+            if (r < 0 || r > 9) Row = -1;
+            if (c >= 0)
+                if ((r >= 0) && CanPutAI(r, c)) Row = r;
+                else Row = -1;
+            else Row = r;
+            // Column
+            if (c < 0 || c > 9) Column = -1;
+            if (r >= 0)
+                if ((c >= 0) && CanPutAI(r, c)) Column = c;
+                else Column = -1;
+            else Column = c;
+        }
+        private bool CanPutAI(int r, int c)
+        {
+            if (Orientation)
+            {
+                int bufRow = r - 1;
+                while (bufRow <= r + 1)
+                {
+                    int bufCol = c - 1;
+                    while (bufCol <= c + Length)
+                    {
+                        if ((bufRow >= 0) && (bufRow <= 9) && (bufCol >= 0) && (bufCol <= 9) && (_battleField.EnemyMap[bufRow, bufCol] > 1) && (c + Length - 1 <= 9)) return false;
+                        bufCol++;
+                    }
+                    bufRow++;
+                }
+                if (c + Length - 1 > 9)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                int bufCol = c - 1;
+                while (bufCol <= c + 1)
+                {
+                    int bufRow = r - 1;
+                    while (bufRow <= r + Length)
+                    {
+                        if ((bufRow >= 0) && (bufRow <= 9) && (bufCol >= 0) && (bufCol <= 9) && (_battleField.EnemyMap[bufRow, bufCol] > 1)) return false;
+                        bufRow++;
+                    }
+
+                    bufCol++;
+                }
+                if (r + Length - 1 > 9)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         private bool CanPut(int r, int c)
         {
@@ -54,24 +110,33 @@ namespace Library
                     int bufCol = c - 1;
                     while (bufCol <= c + Length)
                     {
-                        if ((bufRow >= 0) && (bufRow <= 9) && (bufCol >= 0) && (bufCol <= 9) && (_battleField.MyMap[bufRow, bufCol] > 1)) return false;
+                        if ((bufRow >= 0) && (bufRow <= 9) && (bufCol >= 0) && (bufCol <= 9) && (_battleField.MyMap[bufRow, bufCol] > 1) && (c + Length - 1 <= 9)) return false;
                         bufCol++;
                     }
                     bufRow++;
+                }
+                if (c + Length - 1 > 9)
+                {
+                    return false;
                 }
             }
             else
             {
                 int bufCol = c - 1;
-                while (bufCol <= c + Length)
+                while (bufCol <= c + 1)
                 {
                     int bufRow = r - 1;
-                    while (bufRow <= r + 1)
+                    while (bufRow <= r + Length)
                     {
-                        if (((bufRow >= 0) && (bufRow <= 9) && (bufCol >= 0) && (bufCol <= 9) && (_battleField.MyMap[bufRow, bufCol] > 1))) return false;
+                        if ((bufRow >= 0) && (bufRow <= 9) && (bufCol >= 0) && (bufCol <= 9) && (_battleField.MyMap[bufRow, bufCol] > 1)) return false;
                         bufRow++;
                     }
+                    
                     bufCol++;
+                }
+                if (r + Length - 1 > 9)
+                {
+                    return false;
                 }
             }
             return true;
