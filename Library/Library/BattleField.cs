@@ -15,7 +15,8 @@ namespace Library
         /// </summary>
         private int mapSize = 10;
         private int cellSize = 30;
-        private int scoreNeed = 20; // 
+        private const int scoreNeed = 20;
+        private int playerScore = 0;
         private bool isPlacement;
         private int[,] myMap;
         private int[,] enemyMap;
@@ -43,6 +44,8 @@ namespace Library
         }
         private string alphabet = "АБВГДЕЖЗИКЛV";
         private Font font = new Font("Arial", 10, FontStyle.Bold, GraphicsUnit.Point);
+        private int enemyScore = 0;
+
         public BattleField()
         {
             myMap = new int[mapSize, mapSize];
@@ -131,8 +134,17 @@ namespace Library
                     }
                     if (enemyMap[i, j] == 3)
                     {
-                        e.Graphics.DrawLine(new Pen(Color.Red, 2), i + cellSize, j * cellSize, (i + 1) * cellSize, (j + 1) * cellSize);
-                        e.Graphics.DrawLine(new Pen(Color.Red, 2), 1, 10, 10, 1);
+                        e.Graphics.DrawLine(new Pen(Color.Red, 2), (mapSize + j + 1 + 3) * cellSize, (i + 1) * cellSize, (mapSize + j + 2 + 3) * cellSize, (i + 2) * cellSize);
+                        e.Graphics.DrawLine(new Pen(Color.Red, 2), (mapSize + j + 2 + 3) * cellSize, (i + 1) * cellSize, (mapSize + j + 1 + 3) * cellSize, (i + 2) * cellSize);
+                    }
+                    else if (enemyMap[i, j] == 4)
+                    {
+                        e.Graphics.FillEllipse(new SolidBrush(Color.BlueViolet), (mapSize + j + 1 + 3) * cellSize, (i + 1) * cellSize, cellSize, cellSize);
+                    }
+                    if (myMap[i, j] == 3)
+                    {
+                        e.Graphics.DrawLine(new Pen(Color.Red, 2), (j + 1) * cellSize, (i + 1) * cellSize, (j + 2) * cellSize, (i + 2) * cellSize);
+                        e.Graphics.DrawLine(new Pen(Color.Red, 2), (j + 2) * cellSize, (i + 1) * cellSize, (j + 1) * cellSize, (i + 2) * cellSize);
                     }
                     //else if (myMap[i, j] == 2)
                     //{
@@ -313,14 +325,49 @@ namespace Library
             {
                 int x = (e.X / cellSize - 1) - mapSize - 3;
                 int y = e.Y / cellSize - 1;
-                
                 if (turn)
                 {
                     try
                     {
-                        enemyMap[x, y] = 3;
+                        // 0 - empty, 1 - hover, 2 - placed, 3 - cross, 4 - empty and fired
+                        turn = false;
+                        if (enemyMap[y, x] == 2)
+                        {
+                            playerScore++;
+                            turn = true;
+                            enemyMap[y, x] = 3;
+                        }
+                        else if (enemyMap[y, x] == 0)
+                        {
+                            enemyMap[y, x] = 4;
+                        }
+
                     }
                     catch (IndexOutOfRangeException) { }
+                }
+                else
+                {
+                    Random random = new Random();
+                    int i = random.Next(1, mapSize);
+                    int j = random.Next(1, mapSize);
+                    turn = false;
+                    if (myMap[i, j] == 2)
+                    {
+                        enemyScore++;
+                        turn = true;
+                    }
+                    myMap[i, j] = 3;
+
+                }
+                if (playerScore == scoreNeed)
+                {
+                    MessageBox.Show("You Win!");
+                    isGameStart = false;
+                }
+                else if (enemyScore == scoreNeed)
+                {
+                    MessageBox.Show("You Lose!");
+                    isGameStart = false;
                 }
                 Invalidate();
             }
